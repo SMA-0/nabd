@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سجل طلبك العقاري</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="Untitled-1.css">
+    <style>
+        /* الأنماط المتقدمة لتحديد الجوانب الشفافة */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #F5E1C8; /* كريمي */
+  color: #5B3A29; /* بني داكن */
+  font-family: "Roboto", sans-serif;  /*  تصحيح font-family  */
+}
+
+header {
+  background-color: #5B3A29; /* بني داكن */
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+
+header .logo img {
+  max-inline-size: 120px;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  color: #F5E1C8; /* كريمي */
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 25px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.cta {
+  font-family: inherit;
+  background-color: #D4AF37; /* ذهبي */
+  color: #5B3A29; /* بني داكن */
+  padding:0.75rem 2rem;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  display:inline-block;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.cta.dark {
+  background-color: #A67C52; /* بني فاتح */
+  transition: background-color 0.3s;
+}
+.cta.dark:hover {
+  background-color: #946D47;
+}
+
+
+.cta.dark1 {
+  background-color: #252731;
+  transition: background-color 0.3s;
+}
+.cta.dark1:hover {
+  background-color: #2d2e2e;
+}
+
+.cta.purple {
+  background-color: #A67C52; /* بني فاتح */
+}
+
+.cta.purple:hover {
+  background-color: #946D47;
+}
+ 
+.cta.purple1 {
+  background-color: #A67C52; /* بني فاتح */
+}
+
+.cta.purple1:hover {
+  background-color: #946D47;
+}
+.cta:hover {
+  color: #5B3A29; /* بني داكن */
+}
+
+.container {
+  padding: 50px 15px;
+}
+
+.form-container {
+  background-color: #FFFFFF;
+  border: 2px solid #D4AF37; /* ذهبي */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  inline-size: 50%;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  color: #5B3A29; /* بني داكن */
+}
+
+.form-section {
+  margin-block-end: 30px;
+}
+
+.form-section label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+.form-section input,
+.form-section select,
+.form-section textarea {
+  inline-size: 100%;
+  padding: 12px;
+  margin-block-end: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.button-option {
+  border: 2px solid #D4AF37; /* ذهبي */
+  color: #5B3A29; /* بني داكن */
+  padding: 12px 25px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.button-option:hover {
+  background-color: #D4AF37; /* ذهبي */
+  color: white;
+}
+
+.button-option.selected {
+  background-color: #D4AF37; /* ذهبي */
+  color: white;
+}
+
+footer {
+  background-color: #5B3A29; /* بني داكن */
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-block-start: 50px;
+}
+
+/* بقية التنسيقات هنا ... */
+
+.dynamic-options {
+  display: none; /* إخفاء الخيارات الفرعية بشكل افتراضي */
+}
+
+/* باقي التنسيقات */
+
+ /* إضافة أنماط جديدة */
+ .map-container {
+  block-size: 300px;
+  margin: 20px 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.city-search-wrapper {
+  position: relative;
+  margin: 15px 0;
+}
+
+.city-search-wrapper i {
+  position: absolute;
+  inset-inline-start: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #A67C52; /* بني فاتح */
+}
+
+#city {
+  inline-size: 100%;
+  padding: 12px 40px 12px 20px;
+  border: 2px solid #D4AF37; /* ذهبي */
+  border-radius: 8px;
+  appearance: none;
+}
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="C:\Users\ALI.1\Downloads\nabdh-alaser.jpg" width="100px" alt="نبض العصر">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#">الرئيسية</a></li>
+            <li><a href="#">المخططات</a></li>
+            <li><a href="#">المزاد</a></li>
+            <li><a href="#">اتصل بنا</a></li>
+        </ul>
+    </nav>
+    <button class="cta purple1">تسجيل الدخول</button>
+
+    
+<nav class="navbar">
+    <img src="logo.png" alt="الموقع" class="logo">
+    <div class="nav-items">
+    <a href="#" class="nav-link">إدراج عقار</a>
+    <div class="profile-container">
+    <img src="profile.png" class="profile-icon" alt="الملف الشخصي">
+    <div class="profile-menu">
+    <div class="menu-header">
+    </div>
+    <a href="#" class="menu-item">
+    
+    <span>الملف الشخصي</span>
+    </a>
+    <a href="#" class="menu-item">
+    <span>عقاراتي</span>
+    </a>
+    <div class="menu-item">
+    <span>تسجيل الخروج</span>
+    </div>
+    </div>
+    </div>
+    </div>
+    </nav>
+</header>
+
+ <!-- Main Content -->
+ <div class="container">
+    <div class="form-container">
+        <h1>سجل عقارك</h1>
+        <form id="property-form">
+            <!-- Property Information Section -->
+            <div class="form-section">
+                <h2>معلومات العقار</h2>
+
+                <!-- هدف العقار -->
+                <label for="goal">هدف العقار</label>
+                <div class="button-group" id="goal">
+                    <button type="button" data-option="بيع" class="button-option">بيع</button>
+                    <button type="button" data-option="إيجار" class="button-option">إيجار</button>
+                </div>
+
+                <!-- النوع الفرعي يظهر تحت البيع -->
+                <div id="sale-options" class="dynamic-options" style="display: none;">
+                    <label for="purchase_method">النوع الفرعي</label>
+                    <div class="button-group" id="purchase_method">
+                        <button type="button" data-option="نقدي" class="button-option">نقدي</button>
+                        <button type="button" data-option="تمويل عقاري" class="button-option">تمويل عقاري</button>
+                    </div>
+                </div>
+
+                <!-- نوع العقار -->
+                <label for="property_type">نوع العقار</label>
+                <div class="button-group" id="property_type">
+                    <button type="button" data-option="سكني" class="button-option">سكني</button>
+                    <button type="button" data-option="تجاري" class="button-option">تجاري</button>
+                </div>
+
+                <!-- خيارات العقار بناءً على نوع العقار -->
+                <div id="residential-options" class="dynamic-options" style="display: none;">
+                    <label for="property_subtype">النوع الفرعي</label>
+                    <div class="button-group" id="residential-subtype">
+                        <button type="button" data-option="شقة" class="button-option">شقة</button>
+                        <button type="button" data-option="فيلا" class="button-option">فيلا</button>
+                        <button type="button" data-option="قصر" class="button-option">قصر</button>
+                        <button type="button" data-option="أرض" class="button-option">أرض</button>
+                        <button type="button" data-option="مزرعة" class="button-option">مزرعة</button>
+                        <button type="button" data-option="دوبلكس" class="button-option">دوبلكس</button>
+                        <button type="button" data-option="استراحة" class="button-option">استراحة</button>
+                    </div>
+                </div>
+
+                <div id="commercial-options" class="dynamic-options" style="display: none;">
+                    <label for="commercial-subtype">النوع الفرعي</label>
+                    <div class="button-group" id="commercial-subtype">
+                        <button type="button" data-option="مكتب" class="button-option">مكتب</button>
+                        <button type="button" data-option="معرض" class="button-option">معرض</button>
+                        <button type="button" data-option="أرض" class="button-option">أرض</button>
+                    </div>
+                </div>
+
+                <!-- غرف النوم (تظهر عند اختيار سكني وشقة) -->
+                <div id="bedroom-options" class="dynamic-options" style="display: none;">
+                    <label for="bedrooms">غرف النوم</label>
+                    <div class="button-group" id="bedrooms">
+                        <button type="button" data-option="1" class="button-option">1</button>
+                        <button type="button" data-option="2" class="button-option">2</button>
+                        <button type="button" data-option="3" class="button-option">3</button>
+                        <button type="button" data-option="4" class="button-option">4</button>
+                        <button type="button" data-option="5" class="button-option">5</button>
+                        <button type="button" data-option="6" class="button-option">6</button>
+                        <button type="button" data-option="7" class="button-option">7</button>
+                        <button type="button" data-option="8" class="button-option">8</button>
+                        <button type="button" data-option="9" class="button-option">9</button>
+                        <button type="button" data-option="9+" class="button-option">9+</button>
+                    </div>
+                </div>
+
+                <!-- خيارات إضافية عند اختيار معرض -->
+                <div id="exhibit-outside-mall" class="dynamic-options" style="display: none;">
+                    <label for="outside-mall">
+                        <input type="checkbox" id="outside-mall"> خارج المول
+                    </label>
+                </div>
+
+            <!-- المدينة -->
+            <div class="form-section">
+                <label for="city">المدينة</label>
+                <select id="city">
+                    <option value="">اختر المدينة...</option>
+                    <option value="الرياض">الرياض</option>
+                    <option value="جدة">جدة</option>
+                    <option value="الدمام">الدمام</option>
+                </select>
+                <div id="map-container" class="map-container"></div>
+            </div>
+           
+            <!-- الاسم الكامل -->
+            <div class="form-section">
+                <label for="name">الاسم الكامل</label>
+                <input type="text" id="name" placeholder="أدخل اسمك الكامل">
+            </div>
+
+            <!-- الشروط والأحكام -->
+            <div class="form-section">
+                <label>
+                    <input type="checkbox" id="terms"> أوافق على الشروط والأحكام
+                </label>
+            </div>
+
+            <!-- زر الإرسال -->
+            <button type="submit" class="cta purple">حفظ ومتابعة</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 جميع الحقوق محفوظة</p>
+</footer>
+
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // إدارة الأزرار التفاعلية
+    const buttonGroups = {
+        // هدف العقار
+        '#goal': { exclusive: true },
+        // طريقة الشراء
+        '#purchase_method': { exclusive: true },
+        // نوع العقار
+        '#property_type': { exclusive: true },
+        // النوع الفرعي السكني
+        '#residential-subtype': { exclusive: false },
+        // النوع الفرعي التجاري
+        '#commercial-subtype': { exclusive: true },
+        // غرف النوم
+        '#bedrooms': { exclusive: true }
+    };
+
+    // تهيئة جميع الأزرار
+    Object.entries(buttonGroups).forEach(([selector, settings]) => {
+        document.querySelectorAll(`${selector} .button-option`).forEach(button => {
+            button.addEventListener('click', function() {
+                const parent = this.closest('.button-group');
+                
+                if (settings.exclusive) {
+                    // إزالة التحديد من جميع الأزرار في المجموعة
+                    parent.querySelectorAll('.button-option').forEach(btn => {
+                        btn.classList.remove('selected');
+                    });
+                }
+                
+                // تبديل حالة التحديد
+                this.classList.toggle('selected');
+                updateFormSections();
+            });
+        });
+    });
+
+    // تحديث الأقسام بناءً على التحديدات
+    function updateFormSections() {
+        // إظهار/إخفاء قسم البيع
+        const saleSection = document.getElementById('sale-options');
+        saleSection.style.display = document.querySelector('#goal .selected[data-option="بيع"]') ? 'block' : 'none';
+
+        // إظهار/إخفاء أقسام نوع العقار
+        const isResidential = document.querySelector('#property_type .selected[data-option="سكني"]');
+        const isCommercial = document.querySelector('#property_type .selected[data-option="تجاري"]');
+        
+        document.getElementById('residential-options').style.display = isResidential ? 'block' : 'none';
+        document.getElementById('commercial-options').style.display = isCommercial ? 'block' : 'none';
+
+        // إظهار/إخفاء غرف النوم
+        const residentialSubtype = document.querySelector('#residential-subtype .selected');
+        const showBedrooms = residentialSubtype && ['شقة', 'فيلا'].includes(residentialSubtype.dataset.option);
+        document.getElementById('bedroom-options').style.display = showBedrooms ? 'block' : 'none';
+
+        // إظهار/إخفاء خيار خارج المول
+        const commercialSubtype = document.querySelector('#commercial-subtype .selected');
+        document.getElementById('exhibit-outside-mall').style.display = 
+            (commercialSubtype?.dataset.option === 'معرض') ? 'block' : 'none';
+    }
+
+    // تحديث أولي عند التحميل
+    updateFormSections();
+
+    // إدارة إرسال النموذج
+    document.getElementById('property-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // هنا يمكنك إضافة منطق إرسال النموذج
+        alert('تم حفظ البيانات بنجاح!');
+    });
+});
+
+function updateFormSections() {
+            // ... باقي الدالة ...
+
+            // تحديث شرط غرف النوم
+            const residentialSubtype = document.querySelector('#residential-subtype .selected');
+            const excludedTypes = ['أرض', 'مزرعة'];
+            const showBedrooms = residentialSubtype && !excludedTypes.includes(residentialSubtype.dataset.option);
+            document.getElementById('bedroom-options').style.display = showBedrooms ? 'block' : 'none';
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.button-option');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const parent = button.parentElement;
+                parent.querySelectorAll('.button-option').forEach(btn => btn.classList.remove('selected'));
+                button.classList.add('selected');
+            });
+        });
+
+        const citySelect = document.getElementById('city');
+        const mapContainer = document.getElementById('map-container');
+
+        citySelect.addEventListener('change', function() {
+            if (citySelect.value) {
+                mapContainer.style.display = 'block';
+                initMap(citySelect.value);
+            } else {
+                mapContainer.style.display = 'none';
+            }
+        });
+
+        function initMap(city) {
+            const cities = {
+                'الرياض': [24.7136, 46.6753],
+                'جدة': [21.4858, 39.1925],
+                'الدمام': [26.4207, 50.0888]
+            };
+
+            const map = L.map('map-container').setView(cities[city], 12);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            L.marker(cities[city]).addTo(map).bindPopup(city).openPopup();
+        }
+    });
+} 
+
+document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.button-option');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const parent = button.parentElement;
+                parent.querySelectorAll('.button-option').forEach(btn => btn.classList.remove('selected'));
+                button.classList.add('selected');
+            });
+        });
+
+        const citySelect = document.getElementById('city');
+        const mapContainer = document.getElementById('map-container');
+
+        citySelect.addEventListener('change', () => {
+            if (citySelect.value) {
+                mapContainer.style.display = 'block';
+                initMap(citySelect.value);
+            } else {
+                mapContainer.style.display = 'none';
+            }
+        });
+
+        function initMap(city) {
+            const cities = {
+                'الرياض': [24.7136, 46.6753],
+                'جدة': [21.4858, 39.1925],
+                'الدمام': [26.4207, 50.0888]
+            };
+
+            const map = L.map('map-container').setView(cities[city], 12);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            L.marker(cities[city]).addTo(map).bindPopup(city).openPopup();
+        }
+    });
+</script>
+
+</body>
+</html>

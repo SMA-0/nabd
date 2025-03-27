@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شقة 154.21 متر مربع ب 4 غرف - ظهرة لبن، غرب الرياض | نبض العصر</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    </noscript>
+
+    <style>
+        :root {
+            --klj-primary: #5B3A29;    /* بني داكن */
+            --klj-secondary: #A67C52;  /* بني فاتح */
+            --klj-accent: #D4AF37;     /* ذهبي */
+            --klj-cream: #F5E1C8;      /* كريمي */
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .header {
+            background: var(--klj-cream);
+            border-bottom: 2px solid var(--klj-primary);
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(91, 58, 41, 0.95);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .logo {
+            color: var(--text-light);
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: var(--text-light);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            top: 2.5rem;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: var(--primary-color);
+            padding: 1rem;
+            display: block;
+            transition: background 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background: #f5f5f5;
+        }
+
+        .property-gallery {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .menu-icon {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hero-content {
+            position: relative;
+            top: 35%;
+            text-align: center;
+            color: var(--text-light);
+            padding: 0 1rem;
+        }
+
+        .main-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            animation: fadeInUp 1s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+        .cta-btn {
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+
+        .price-box {
+            background: white;
+            border: 2px solid var(--klj-primary);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white !important;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+
+        .btn-call {
+            background: var(--klj-primary);
+            color: white !important;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+
+        .property-feature {
+            border-right: 3px solid var(--klj-accent);
+            padding-right: 15px;
+            margin: 10px 0;
+        }
+
+        .finance-calculator {
+            background: linear-gradient(45deg, var(--klj-cream), white);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .similar-card {
+            border: 1px solid var(--klj-cream);
+            border-radius: 12px;
+            transition: transform 0.3s;
+        }
+
+        .similar-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .primary-btn {
+            background: var(--primary-color);
+            color: var(--text-light);
+        }
+
+        .primary-btn:hover {
+            background: #4a2f20;
+            transform: translateY(-2px);
+        }
+
+        .secondary-btn {
+            background: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        .secondary-btn:hover {
+            background: #c19d6c;
+            transform: translateY(-2px);
+        }
+
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 70%;
+                background: rgba(91, 58, 41, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+                justify-content: center;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateX(0);
+                display: flex;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+
+            .dropdown-content {
+                position: static;
+                background: rgba(255, 255, 255, 0.1);
+                box-shadow: none;
+                animation: none;
+            }
+
+            .dropdown-content a {
+                color: var(--text-light);
+            }
+        }
+        .road {
+    position: fixed;
+    bottom: 10px; /* المسافة من الأسفل */
+    left: 3px; /* المسافة من اليسار */
+    width: 110px;
+    height: 380px;
+    border: 2px solid #333;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.car {
+    width: 50px;
+    height: 85px;
+    background-color: #888;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+    </style>
+</head>
+
+<div class="road">
+    <div class="car" id="car"></div>
+</div>
+
+<body>
+
+      <!-- Navigation -->
+      <nav class="navbar">
+        <h1 class="logo">منصة العقارات</h1>
+        
+        <div class="nav-links">
+            <a href="C:\Users\ALI.1\موقع نبض العصر\صفحة المزادات.html">المزادات</a>
+            <a href="#offers">العروض</a>
+            <a href="C:\Users\ALI.1\موقع نبض العصر\exchange.html">البورصة</a>
+            <a href="#plans">المخططات</a>
+            <div class="dropdown">
+                <a href="#services">الخدمات ▾</a>
+                <div class="dropdown-content">
+                    <a href="#research">دراسات وبحوث</a>
+                    <a href="#valuation">التقييم العقاري</a>
+                    <a href="#vr">التصوير VR/3D</a>
+                </div>
+            </div>
+        </div>
+        
+        <button class="menu-icon" onclick="toggleMenu()" aria-label="قائمة التنقل">☰</button>
+    </nav>
+
+<div class="header py-3">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <img src="logo.png" alt="شعار نبض العصر" width="120">
+            <div class="d-flex gap-3">
+                <a href="#" class="text-dark"><i class="fas fa-heart"></i> حفظ</a>
+                <a href="#" class="text-dark"><i class="fas fa-share-alt"></i> مشاركة</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row g-4">
+        <!-- العمود الرئيسي -->
+        <div class="col-lg-8">
+            <!-- العنوان -->
+            <div class="mb-4">
+                <h1 class="h2 fw-bold">شقة 154.21 متر مربع ب 4 غرف</h1>
+                <div class="d-flex align-items-center gap-3 text-muted">
+                    <span><i class="fas fa-map-marker-alt"></i> ظهرة لبن، غرب الرياض</span>
+                    <span><i class="fas fa-eye"></i> 143 مشاهدة (آخر 7 أيام)</span>
+                </div>
+            </div>
+
+            <!-- معرض الصور -->
+            <div class="property-gallery mb-4">
+                <div class="ratio ratio-16x9">
+                    <img src="C:\Users\ALI.1\موقع نبض العصر\تنزيل.JFIF" class="img-fluid" alt="صورة العقار">
+                </div>
+                <div class="row g-2 p-2 bg-light">
+                    <div class="col"><img src="" class="img-fluid rounded" alt=""></div>
+                    <div class="col"><img src=" " class="img-fluid rounded" alt=""></div>
+                    <div class="col"><img src="" class="img-fluid rounded" alt=""></div>
+                </div>
+            </div>
+
+            <!-- المعلومات الأساسية -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="property-feature">
+                                <small class="text-muted">نوع العقار</small>
+                                <div class="fw-bold">شقة سكنية</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="property-feature">
+                                <small class="text-muted">المساحة</small>
+                                <div class="fw-bold">154.21 م²</div>
+                            </div>
+                        </div>
+                        <!-- إضافة المزيد من الخصائص -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- الوصف التفصيلي -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="fw-bold mb-3"><i class="fas fa-file-alt me-2"></i>وصف العقار</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>3 غرف نوم (غرفتان ماستر)</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>موقع مميز على شارع 30م</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>قرب الخدمات الأساسية</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- الخريطة -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="fw-bold mb-3"><i class="fas fa-map-marked-alt me-2"></i>الموقع على الخريطة</h5>
+                    <div class="ratio ratio-16x9">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3622.041623489343!2d46.67529631500138!3d24.71359658411902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03890d489399%3A0xba76d04646c125d3!2z2KfZhNmH2YjZhyDYp9mE2YXYudmK2KfYqiDYp9mE2K_ZgtmH2YTZitip!5e0!3m2!1sar!2ssa!4v1716740094147!5m2!1sar!2ssa" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- العمود الجانبي -->
+        <div class="col-lg-4">
+            <div class="price-box p-4">
+                <div class="text-center mb-4">
+                    <div class="h1 fw-bold" style="color: var(--klj-primary);">860,000 ر.س</div>
+                    <div class="text-muted">القسط الشهري: 5,381 ر.س</div>
+                </div>
+
+                <div class="d-grid gap-3">
+                    <button class="btn btn-whatsapp">
+                        <i class="fab fa-whatsapp me-2"></i> تواصل عبر واتساب
+                    </button>
+                    <button class="btn btn-call">
+                        <i class="fas fa-phone-alt me-2"></i> اتصل الآن
+                    </button>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="finance-calculator">
+                    <h6 class="fw-bold mb-3"><i class="fas fa-calculator me-2"></i>حاسبة التمويل</h6>
+                    <div class="mb-3">
+                        <label class="form-label small">مدة التمويل (سنة)</label>
+                        <input type="range" class="form-range" min="5" max="30" value="30">
+                    </div>
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <div class="border p-2 rounded">
+                                <small class="text-muted">الدفعة الأولى</small>
+                                <div class="fw-bold">86,000 ر.س</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="border p-2 rounded">
+                                <small class="text-muted">مبلغ القرض</small>
+                                <div class="fw-bold">774,000 ر.س</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- عقارات مشابهة -->
+    <div class="my-5">
+        <h4 class="fw-bold mb-4"><i class="fas fa-home me-2"></i>عقارات مشابهة</h4>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="similar-card p-3">
+                    <img src="similar1.jpg" class="img-fluid rounded mb-3" alt="">
+                    <div class="h5 fw-bold">1,000,000 ر.س</div>
+                    <div class="text-muted small">شقة 181.78 م² - 4 غرف</div>
+                    <div class="mt-2">
+                        <span class="badge bg-warning">35.6% عائد</span>
+                    </div>
+                </div>
+            </div>
+            <!-- إضافة المزيد من العقارات -->
+        </div>
+    </div>
+</div>
+
+<footer class="bg-dark text-white py-4">
+    <div class="container text-center">
+        <img src="logo-light.png" alt="شعار نبض العصر" width="100" class="mb-3">
+        <p class="mb-0">© 2024 نبض العصر. جميع الحقوق محفوظة</p>
+        <div class="mt-2">
+            <a href="#" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-white mx-2"><i class="fab fa-snapchat"></i></a>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Toggle mobile menu
+    function toggleMenu() {
+        const navLinks = document.querySelector('.nav-links');
+        navLinks.classList.toggle('active');
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Video fallback
+    const video = document.querySelector('.hero-video');
+    const fallback = document.querySelector('.hero-fallback');
+    video.addEventListener('error', () => {
+        video.style.display = 'none';
+        fallback.style.display = 'block';
+    });
+
+    window.addEventListener('scroll', function() {
+    var scrollY = window.scrollY;
+    var roadHeight = document.querySelector('.road').offsetHeight;
+    var car = document.getElementById('car');
+
+    var maxMove = roadHeight - car.offsetHeight;
+    var move = Math.min(maxMove, scrollY / 2);
+
+    car.style.bottom = move + 'px';
+});
+
+</script>
+</body>
+</html>

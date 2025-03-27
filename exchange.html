@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>البورصة العقارية - وزارة العدل</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* أنماط متقدمة مستوحاة من الموقع الرسمي */
+        :root {
+            --primary-blue: #2A5F9E;
+            --secondary-blue: #4A8FD2;
+            --light-bg: #F8F9FA;
+            --text-dark: #2D3748;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--light-bg);
+            color: var(--text-dark);
+        }
+
+        .navbar {
+            background: var(--primary-blue);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+        }
+
+        .nav-links a {
+            color: white !important;
+            padding: 0.5rem 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+        }
+
+        .market-stats {
+            background: linear-gradient(to right, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            padding: 3rem 0;
+            margin-top: 80px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-box {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .stat-box h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-box p {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .property-list {
+            padding: 4rem 0;
+        }
+
+        .property-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            transition: transform 0.3s ease;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .map-section {
+            height: 600px;
+            background: #e9ecef;
+            position: relative;
+        }
+
+        #map {
+            height: 100%;
+            background: url('map-mockup.png') no-repeat center/cover;
+        }
+
+        /* تصميم محسن للبحث */
+        .search-bar {
+            background: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .search-bar input {
+            width: 60%;
+            padding: 1rem;
+            border: 2px solid var(--primary-blue);
+            border-radius: 30px;
+            font-size: 1.1rem;
+        }
+
+        .search-bar button {
+            background: var(--primary-blue);
+            color: white;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 30px;
+            margin-right: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .search-bar input {
+                width: 80%;
+            }
+
+            .stat-box p {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- الرأس المحدث -->
+    <header class="navbar">
+        <div class="container">
+            <h1 class="logo" style="color: white;">البورصة العقارية</h1>
+            <nav class="nav-links">
+                <a href="index.html">الرئيسية</a>
+                <a href="statistics.html">الإحصائيات</a>
+                <a href="reports.html">التقارير</a>
+                <a href="laws.html">الأنظمة</a>
+                <a href="contact.html">الدعم</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- شريط بحث متقدم -->
+    <section class="search-bar">
+        <div class="container" style="text-align: center;">
+            <input type="text" placeholder="البحث بالرقم المساحي أو الموقع...">
+            <button>بحث متقدم</button>
+        </div>
+    </section>
+
+    <!-- إحصائيات السوق -->
+    <section class="market-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <h3>إجمالي الصفقات</h3>
+                    <p>١٣٬٤٥٦</p>
+                </div>
+                <div class="stat-box">
+                    <h3>القيمة السوقية</h3>
+                    <p>٥٫٢ مليار</p>
+                </div>
+                <div class="stat-box">
+                    <h3>متوسط السعر</h3>
+                    <p>٨٥٠٬٠٠٠ ر.س</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قائمة الصفقات -->
+    <section class="property-list">
+        <div class="container">
+            <div class="property-card">
+                <div class="property-header" style="display: flex; justify-content: space-between;">
+                    <h3>عقار سكني - حي السفارات</h3>
+                    <span class="price-tag" style="background: var(--primary-blue); color: white; padding: 0.5rem 1rem; border-radius: 20px;">2,750,000 ر.س</span>
+                </div>
+                <div class="property-details" style="margin-top: 1.5rem;">
+                    <p>المساحة: 620 م² | نوع العقار: سكني</p>
+                    <p>الموقع: الرياض، حي السفارات</p>
+                    <p>تاريخ الصفقة: 12/03/2024</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="property-header" style="display: flex; justify-content: space-between;">
+                    <h3>مبنى تجاري - جدة</h3>
+                    <span class="price-tag" style="background: var(--primary-blue); color: white; padding: 0.5rem 1rem; border-radius: 20px;">4,200,000 ر.س</span>
+                </div>
+                <div class="property-details" style="margin-top: 1.5rem;">
+                    <p>المساحة: 1200 م² | نوع العقار: تجاري</p>
+                    <p>الموقع: جدة، حي الشاطئ</p>
+                    <p>تاريخ الصفقة: 10/03/2024</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الخريطة التفاعلية -->
+    <section class="map-section">
+        <div id="map"></div>
+    </section>
+
+    <!-- تذييل الصفحة -->
+    <footer class="footer" style="background: var(--text-dark); color: white; padding: 3rem 0; margin-top: 4rem;">
+        <div class="container" style="text-align: center;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+                <div>
+                    <h4>عن البورصة</h4>
+                    <p>نظام إلكتروني معتمد من وزارة العدل</p>
+                </div>
+                <div>
+                    <h4>روابط سريعة</h4>
+                    <a href="#" style="color: white;">الشروط والأحكام</a><br>
+                    <a href="#" style="color: white;">الأسئلة الشائعة</a>
+                </div>
+                <div>
+                    <h4>الدعم الفني</h4>
+                    <p>support@realestate-exchange.sa</p>
+                    <p>920033445</p>
+                </div>
+            </div>
+            <hr style="margin: 2rem 0;">
+            <p>جميع الحقوق محفوظة © 2024 البورصة العقارية السعودية</p>
+        </div>
+    </footer>
+</body>
+</html>

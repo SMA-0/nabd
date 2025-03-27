@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة عقار جديد - نبض العصر</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --klj-primary: #5B3A29;
+            --klj-secondary: #A67C52;
+            --klj-accent: #D4AF37;
+            --klj-cream: #F5E1C8;
+        }
+
+        body {
+            background: #f8f9fa;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .navbar-custom {
+            background: var(--klj-cream) !important;
+            border-bottom: 2px solid var(--klj-primary);
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 2rem;
+        }
+
+        .form-title {
+            color: var(--klj-primary);
+            border-bottom: 3px solid var(--klj-accent);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-label {
+            color: var(--klj-primary);
+            font-weight: 600;
+        }
+
+        .form-control {
+            border: 2px solid var(--klj-cream);
+            border-radius: 8px;
+            padding: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--klj-secondary);
+            box-shadow: 0 0 0 3px rgba(166,124,82,0.2);
+        }
+
+        .upload-area {
+            border: 2px dashed var(--klj-secondary);
+            background: rgba(245,225,200,0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .upload-area:hover {
+            background: rgba(245,225,200,0.2);
+            transform: translateY(-3px);
+        }
+
+        .btn-primary-custom {
+            background: var(--klj-primary);
+            color: white !important;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-custom:hover {
+            background: var(--klj-secondary);
+            transform: translateY(-2px);
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .step-item {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--klj-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 1rem;
+            font-weight: 700;
+            color: var(--klj-primary);
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .step-item.active {
+            background: var(--klj-primary);
+            color: white;
+        }
+
+        .feature-tag {
+            display: inline-flex;
+            align-items: center;
+            background: var(--klj-cream);
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            margin: 0.3rem;
+        }
+
+        .price-preview {
+            background: var(--klj-cream);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--klj-primary);
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="logo.png" alt="شعار نبض العصر" height="40">
+        </a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="form-container">
+        <h2 class="form-title"><i class="fas fa-home me-2"></i>إضافة عقار جديد</h2>
+
+        <!-- مؤشر الخطوات -->
+        <div class="step-indicator">
+            <div class="step-item active">1</div>
+            <div class="step-item">2</div>
+            <div class="step-item">3</div>
+        </div>
+
+        <!-- الخطوة الأولى -->
+        <div class="step-content">
+            <div class="mb-4">
+                <label class="form-label">نوع العقار</label>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <button class="btn btn-outline-secondary w-100">فيلا</button>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-outline-secondary w-100">شقة</button>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-outline-secondary w-100">أرض</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">رفع الصور (12 صورة كحد أقصى)</label>
+                <div class="upload-area">
+                    <i class="fas fa-cloud-upload-alt fa-3x mb-3" style="color: var(--klj-secondary)"></i>
+                    <h5>اسحب الصور هنا أو انقر للاختيار</h5>
+                    <p class="text-muted">JPEG, PNG - الحد الأقصى 10MB لكل صورة</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- الخطوة الثانية -->
+        <div class="step-content d-none">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <label class="form-label">المساحة (م²)</label>
+                    <input type="number" class="form-control" placeholder="أدخل المساحة الكلية">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">عدد الغرف</label>
+                    <input type="number" class="form-control" placeholder="عدد الغرف">
+                </div>
+                
+                <div class="col-md-12">
+                    <label class="form-label">الوصف التفصيلي</label>
+                    <textarea class="form-control" rows="5" placeholder="وصف العقار..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- الخطوة الثالثة -->
+        <div class="step-content d-none">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <label class="form-label">السعر المطلوب (ر.س)</label>
+                    <input type="number" class="form-control" placeholder="أدخل السعر">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">طريقة الدفع</label>
+                    <select class="form-select">
+                        <option>نقدي</option>
+                        <option>تمويل بنكي</option>
+                        <option>دفعة أولى + أقساط</option>
+                    </select>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="price-preview">
+                        <h5 class="text-center mb-3">ملخص التسعير</h5>
+                        <div class="row">
+                            <div class="col-6">القيمة السوقية المقدرة:</div>
+                            <div class="col-6 fw-bold">850,000 ر.س</div>
+                            
+                            <div class="col-6">السعر المقترح:</div>
+                            <div class="col-6 fw-bold text-success">860,000 ر.س</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- التحكم في الخطوات -->
+        <div class="d-flex justify-content-between mt-4">
+            <button class="btn btn-secondary">رجوع</button>
+            <button class="btn btn-primary-custom">التالي <i class="fas fa-arrow-left"></i></button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // إدارة الخطوات
+    let currentStep = 1;
+    const steps = document.querySelectorAll('.step-item');
+    const stepContents = document.querySelectorAll('.step-content');
+
+    document.querySelector('.btn-primary-custom').addEventListener('click', () => {
+        if(currentStep < 3) {
+            steps[currentStep].classList.add('active');
+            stepContents[currentStep-1].classList.add('d-none');
+            stepContents[currentStep].classList.remove('d-none');
+            currentStep++;
+        }
+    });
+</script>
+
+</body>
+</html>
